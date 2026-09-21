@@ -1,5 +1,7 @@
 package com.flashticket.flash_ticket_backend.controller;
 
+import com.flashticket.flash_ticket_backend.dto.PurchaseRequest;
+import com.flashticket.flash_ticket_backend.dto.PurchaseResponse;
 import com.flashticket.flash_ticket_backend.dto.TicketRequest;
 import com.flashticket.flash_ticket_backend.dto.TicketResponse;
 import com.flashticket.flash_ticket_backend.service.TicketService;
@@ -34,5 +36,11 @@ public class TicketController {
     public ResponseEntity<TicketResponse> createTicket(@RequestBody TicketRequest request){
         TicketResponse createdTicket = ticketService.createTicket(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
+    }
+
+    @PostMapping("/purchase")
+    public ResponseEntity<PurchaseResponse> purchaseTicket(@RequestBody PurchaseRequest request){
+        PurchaseResponse response = ticketService.purchaseTicket(request);
+        return ResponseEntity.ok(response);
     }
 }
